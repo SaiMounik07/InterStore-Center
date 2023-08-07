@@ -1,0 +1,116 @@
+/* Global styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.tables {
+  margin: 0;
+  text-align: center;
+  font-size: 30px;
+  color: #fff;
+  padding: 50px 0;
+  background-color: rgba(0, 242, 255, 0.899);
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+}
+
+/* Table header cells */
+th {
+  word-spacing: 5px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(41, 180, 143, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 100px 80px rgba(254, 246, 246, 0.12);
+  width: 15vw;
+}
+
+/* Product header */
+.product-header {
+  text-align: center;
+}
+
+/* Success message */
+.success-message {
+  position: relative;
+  bottom: 20px;
+  right: 40px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 5px;
+  display: block;
+}
+
+/* Image upload section */
+.image-upload {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.image-upload input[type="file"] {
+  margin-right: 10px;
+}
+
+.image-upload input[type="text"] {
+  flex: 1;
+  padding: 5px;
+}
+
+.image-upload button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.image-preview {
+  max-width: 200px;
+  margin-top: 10px;
+}
+
+.category{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2;
+}
+.addCategory{
+  color: white;
+  background-color:rgb(42, 156, 42);
+}
+.success-message {
+  position: fixed;
+  bottom: 15px;
+  text-align: right;
+  /* margin: 20px; */
+  transform: translateX(-50%);
+  background-color: #595b59;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  /* z-index: 999; */
+}
+
+@media screen and (max-width: 768px) {
+  .tables {
+    font-size: 24px;
+  }
+}
