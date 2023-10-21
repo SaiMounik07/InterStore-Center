@@ -3,8 +3,8 @@ import './category.css';
 import React, { useState, useEffect } from "react"
 import { AiOutlineSetting } from "react-icons/ai";
 import { Dropdown, Space, Table,Button } from 'antd';
-import DeletePopUp from '/Users/saimounik/center/src/components/popups/deletePopUP';
-import EditPopup from '/Users/saimounik/center/src/components/popups/editPopup';
+import DeletePopUp from '../popups/deletePopUP';
+import EditPopup from '../popups/editPopup';
 import axios from "axios";
 import AddCategory from './addCategory';
 import AuthService from '../../auth/auth-service';
