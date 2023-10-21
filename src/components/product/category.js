@@ -1,12 +1,14 @@
 import './category.css';
-import './popup.css';
+import '/Users/saimounik/center/src/components/popups/popup.css';
 import React, { useState, useEffect } from "react"
 import { AiOutlineSetting } from "react-icons/ai";
 import { Dropdown, Space, Table,Button } from 'antd';
-import DeletePopUp from './deletePopUP';
-import EditPopup from './editPopup';
+import DeletePopUp from '/Users/saimounik/center/src/components/popups/deletePopUP';
+import EditPopup from '/Users/saimounik/center/src/components/popups/editPopup';
 import axios from "axios";
 import AddCategory from './addCategory';
+import AuthService from '../../auth/auth-service';
+import ErrorPopup from '../popups/errorPopup';
 
 let dummy = ''
 
@@ -36,9 +38,9 @@ function Category() {
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [rowData,setRowData]=useState(null);
     const [showAddPopup,setShowAddPopup]=useState(false);
+    const [showErrorPopup,setShowErrorPopup]=useState();
+    const [errorMessage,setErrorMessage]=useState();
 
-
-//util functions
 const handleRow = (rowData) => {
     return {
         onClick: () => {
@@ -55,6 +57,12 @@ const handleEdit=(rowData)=>{
    console.log(rowData.categoryName);
 };
 
+const showErrorPopups=()=>{
+setShowErrorPopup(true);
+}
+const closeErrorPopup=()=>{
+    setShowErrorPopup(false);
+}
 
 
 const handleDeleteClick = () => {
@@ -81,24 +89,60 @@ const closePopup=()=>{
 
   //api calls
   const handleDeleteConfirm = async() => {
-      await axios.delete("http://localhost:8080/product/category/"+dummy);
+    try{
+      const result=await axios.delete("http://localhost:8080/product/category/"+dummy,{
+        headers:AuthService.getToken(),
+      });
       setShowSuccessMessage(true);
       setTimeout(() => {
         setShowSuccessMessage(false);
       }, 3000); 
       window.location.reload();
+    }catch{
+        setShowErrorPopup(true);
+        setErrorMessage('System Error');
+
+    }
 
     };
   
     const AvailProducts = async () => {        
-        const result = await axios.get("http://localhost:8080/product/category/"+dummy);
-        setProducts(result.data.products);
+        const result = await axios.get("http://localhost:8080/product/category",{
+            headers:{
+                "categoryName":dummy,
+                "Authorization": "Bearer "+AuthService.token()
+            }
+        });
+        if(result.data.products){
+            setProducts(result.data.products);
+        }else{
+            setShowErrorPopup(true);
+            setErrorMessage('no products to display');
+
+        }
+        
     }
 
     const loadCategories = async () => {
-        const result = await axios.get("http://localhost:8080/product/getCategories");
-        setCategories(result.data);
-    }
+        try {
+          const response = await axios.get("http://localhost:8080/product/getCategories", {
+            headers: AuthService.getToken(),
+          });
+      
+          if (response.status === 200 && response.data.value !== "EMPTY_VALUE") {
+            setCategories(response.data.value);
+          } else {
+            setShowErrorPopup(true);
+            setErrorMessage('no categories, please create category');
+
+          }
+        } catch (error) {
+          setShowErrorPopup(true);
+          setErrorMessage('System Error');
+          console.error("Error loading categories:", error);
+        }
+      };
+      
     
 
 //objects  
@@ -188,6 +232,11 @@ const column1 = [
                 {showEditPopup && (
                  <EditPopup isVisible={showEditPopup} onClose={handlePopupClose} rowValue={dummy} />
                  )}
+                 {
+                    showErrorPopup &&(
+                        <ErrorPopup isVisible={showErrorPopups} onClose={closeErrorPopup} name={errorMessage}/>
+                    )
+                 }
             
            
             

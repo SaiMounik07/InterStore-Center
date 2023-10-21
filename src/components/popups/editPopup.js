@@ -3,6 +3,7 @@ import './popup.css'
 import './editPopup.css'
 import { Button } from 'antd'; 
 import axios from "axios";
+import AuthService from '../../auth/auth-service';
 
 const EditPopup = ({ isVisible, onClose,rowValue ,props,rowData}) => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -47,6 +48,7 @@ const EditPopup = ({ isVisible, onClose,rowValue ,props,rowData}) => {
      categoryImage: selectedImage,
      categoryName:rowValue ,
      updatedCategoryName:imageName,
+     headers:AuthService.getToken(),
     });
 
     console.log('Image uploaded successfully:', response.data);
@@ -58,7 +60,7 @@ const EditPopup = ({ isVisible, onClose,rowValue ,props,rowData}) => {
     const isEditButtonDisabled = isUpdatedNameEmpty;
 
   return (
-    <div className={`modal-container ${isVisible ? 'visible' : ''}`}>
+    <div className={`modal-containers ${isVisible ? 'visible' : ''}`}>
       <div className="modal-content">
       <h3 className='header'>Edit Category</h3>
         <p className='container'>Enter the details to be edited</p>
