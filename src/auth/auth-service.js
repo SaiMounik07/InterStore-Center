@@ -2,7 +2,7 @@ import axios from "axios";
 
 const login=(email,password)=>{
     return axios
-    .post("http://localhost:8080/member/login", {
+    .post(getBaseUrl()+"/member/login", {
         email,
         password,
       })
@@ -38,12 +38,15 @@ const getToken=()=>{
             };
     }
 }
-
+const getBaseUrl=()=>{
+  return "https://valid-tail-production.up.railway.app";
+}
 
 const AuthService={
 login,
 getCurrentUser,
 getToken,
 token,
+getBaseUrl
 };
 export default AuthService;

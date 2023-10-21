@@ -43,7 +43,7 @@ function AddCategory({ isVisible, onClose,rowValue ,props,rowData}){
     console.error('Please select an image and provide a name.');
     return;
     }
-    const response = await axios.post('http://localhost:8080/product/category', {
+    const response = await axios.post(AuthService.getBaseUrl()+'/product/category', {
     categoryName:imageName, 
     categoryImage: selectedImage,
     },{

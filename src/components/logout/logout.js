@@ -11,7 +11,7 @@ const Logout = ({ isVisible, onClose }) => {
 const navigate=useNavigate();
   if (!isVisible) return null;
   const handleDeleteConfirm = async() => {
-    await axios.get("http://localhost:8080/member/logout",{
+    await axios.get(AuthService.getBaseUrl()+"/member/logout",{
       headers:AuthService.getToken(),
     });
     localStorage.clear();

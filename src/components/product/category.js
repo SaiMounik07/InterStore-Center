@@ -90,7 +90,7 @@ const closePopup=()=>{
   //api calls
   const handleDeleteConfirm = async() => {
     try{
-      const result=await axios.delete("http://localhost:8080/product/category/"+dummy,{
+      const result=await axios.delete(AuthService.getBaseUrl()+"/product/category/"+dummy,{
         headers:AuthService.getToken(),
       });
       setShowSuccessMessage(true);
@@ -107,7 +107,7 @@ const closePopup=()=>{
     };
   
     const AvailProducts = async () => {        
-        const result = await axios.get("http://localhost:8080/product/category",{
+        const result = await axios.get(AuthService.getBaseUrl()+"/product/category",{
             headers:{
                 "categoryName":dummy,
                 "Authorization": "Bearer "+AuthService.token()
@@ -125,7 +125,7 @@ const closePopup=()=>{
 
     const loadCategories = async () => {
         try {
-          const response = await axios.get("http://localhost:8080/product/getCategories", {
+          const response = await axios.get(AuthService.getBaseUrl()+"/product/getCategories", {
             headers: AuthService.getToken(),
           });
       

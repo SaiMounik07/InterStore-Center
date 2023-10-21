@@ -44,7 +44,7 @@ const EditPopup = ({ isVisible, onClose,rowValue ,props,rowData}) => {
     console.error('Please select an image and provide a name.');
     return;
     }
-    const response = await axios.put('http://localhost:8080/product/updateCategory', {
+    const response = await axios.put(AuthService.getBaseUrl()+'/product/updateCategory', {
      categoryImage: selectedImage,
      categoryName:rowValue ,
      updatedCategoryName:imageName,

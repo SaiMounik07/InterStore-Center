@@ -7,7 +7,7 @@ function Home(){
     return(
       <div >
       <div className="tables">Home</div>
-      <div className='message'>
+      <div className='messages'>
         Welcome<br/>
       {userNames}!<br></br>
       To the {role} panel
