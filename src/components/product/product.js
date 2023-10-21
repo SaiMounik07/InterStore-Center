@@ -42,7 +42,7 @@ function Product(){
     }
     const handleDelete=async()=>{
         try{
-            const result=await axios.delete("http://localhost:8080/product/"+id,{
+            const result=await axios.delete(AuthService.getBaseUrl()+"/product/"+id,{
               headers:AuthService.getToken(),
             });
             if(result.data)
@@ -58,7 +58,7 @@ function Product(){
     }
     const products = async () => {
         try {
-          const response = await axios.get("http://localhost:8080/product/getProducts", {
+          const response = await axios.get(AuthService.getBaseUrl()+"/product/getProducts", {
             headers: AuthService.getToken(),
           });
       

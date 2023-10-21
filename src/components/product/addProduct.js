@@ -49,7 +49,7 @@ function AddProduct({onClose}){
     
       const handleAddProduct=async()=>{
         try{
-            const response=await axios.post("http://localhost:8080/product/products",{
+            const response=await axios.post(AuthService.getBaseUrl()+"/product/products",{
         
                 productId:productId,
                 productName:productName,
@@ -80,7 +80,7 @@ function AddProduct({onClose}){
       }
         const categoryResponse=async()=>{
             try {
-                const response = await axios.get("http://localhost:8080/product/getCategories", {
+                const response = await axios.get(AuthService.getBaseUrl()+"/product/getCategories", {
                   headers: AuthService.getToken(),
                 });
                 setAllCategories(response.data.value.map((category) => category.categoryName));
