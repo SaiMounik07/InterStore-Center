@@ -1,5 +1,5 @@
 import './category.css';
-import '/Users/saimounik/center/src/components/popups/popup.css';
+// import '../../popups/popup.css'; // Adjusted import path for popup.css
 import React, { useState, useEffect } from "react"
 import { AiOutlineSetting } from "react-icons/ai";
 import { Dropdown, Space, Table,Button } from 'antd';
