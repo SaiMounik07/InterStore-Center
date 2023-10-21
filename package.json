@@ -2,7 +2,7 @@
   "name": "center",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://SaiMounik07.github.io/cart",
+  "homepage": "https://SaiMounik07.github.io/InterStore-Center",
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.17.0",
