@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Button } from 'antd'; 
 import axios from "axios";
+import AuthService from '../../auth/auth-service';
 
 function AddCategory({ isVisible, onClose,rowValue ,props,rowData}){
     const [selectedImage, setSelectedImage] = useState(null);
     const [imageName, setImageName] = useState('');
     const [imageNameError, setImageNameError] = useState('');
     const [isUpdatedNameEmpty, setIsUpdatedNameEmpty] = useState(false);
+    
 
   if (!isVisible) return null;
 
@@ -44,7 +46,10 @@ function AddCategory({ isVisible, onClose,rowValue ,props,rowData}){
     const response = await axios.post('http://localhost:8080/product/category', {
     categoryName:imageName, 
     categoryImage: selectedImage,
-    });
+    },{
+        headers: AuthService.getToken(),
+    }
+    );
 
     console.log('Image uploaded successfully:', response.data);
     } catch (error) {
@@ -55,7 +60,7 @@ function AddCategory({ isVisible, onClose,rowValue ,props,rowData}){
     const isEditButtonDisabled = isUpdatedNameEmpty;
 
   return (
-    <div className={`modal-container ${isVisible ? 'visible' : ''}`}>
+    <div className={`modal-containers ${isVisible ? 'visible' : ''}`}>
       <div className="modal-content">
       <h3 className='header'>Add Category</h3>
         <p className='container'>Enter the details</p>

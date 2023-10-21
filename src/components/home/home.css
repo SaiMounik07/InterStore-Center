@@ -6,3 +6,9 @@
     font-size: 30px;
     color: rgb(27, 136, 231);
 }
+.message{
+    text-align: center;
+    padding-top: 50%;
+    font-size: 30px;
+    color: #3194f1;
+}
