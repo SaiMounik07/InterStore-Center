@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './popup.css';
 import { Button } from 'antd'; 
 const DeletePopUp = ({ isVisible, onClose, onDelete }) => {
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './popup.css'
+// import './popup.css'
 import './editPopup.css'
 import { Button } from 'antd'; 
 import axios from "axios";
