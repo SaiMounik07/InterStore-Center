@@ -36,7 +36,7 @@ const handleRegister=async()=>{
         const response=await axios.post(AuthService.getBaseUrl()+"/member/addMember",{
             name:name,
             gender:gender,
-            age:age,
+            age:parseInt(age),
             email:email,
             password:password,
             confirmPassword:confirmPassword,
