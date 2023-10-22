@@ -51,6 +51,10 @@ const handleRegister=async()=>{
             localStorage.setItem("email",email);
             history("/verify");
         }
+        if(response.data.code===400){
+            setShowErrorPopup(true);
+            setErrorMessage("user already exists");
+        }
         }catch(error){
             setShowErrorPopup(true);
             setErrorMessage("System error");
