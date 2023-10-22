@@ -3,7 +3,7 @@ import Navbar from './components/navbar/navbar';
 import Prouduct from './components/product/product';
 import Category from './components/product/category';
 import Home from './components/home/home';
-import { BrowserRouter, Routes, Route, redirect,Link, Navigate } from "react-router-dom";
+import { BrowserRouter,HashRouter, Routes, Route, redirect,Link, Navigate } from "react-router-dom";
 import NoPage from './pages/nopage';
 import Login from './components/login/login'; // Correct import for Login component
 import AuthService from './auth/auth-service';
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           {isAuthenticated ? (
            <Route path="/" element={<Navbar />}>
@@ -62,7 +62,7 @@ function App() {
           )}
           {isAuthenticated ? null : <Route path="/login"  element={<Login />} />}
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
