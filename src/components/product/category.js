@@ -9,6 +9,7 @@ import axios from "axios";
 import AddCategory from './addCategory';
 import AuthService from '../../auth/auth-service';
 import ErrorPopup from '../popups/errorPopup';
+import { useNavigate } from 'react-router-dom';
 
 let dummy = ''
 
@@ -31,6 +32,8 @@ const column2 = [
 ]
 
 function Category() {
+    const history = useNavigate();
+
     const [products, setProducts] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const [showEditPopup,setShowEditPopup]=useState(false);
@@ -62,6 +65,10 @@ setShowErrorPopup(true);
 }
 const closeErrorPopup=()=>{
     setShowErrorPopup(false);
+    localStorage.clear();
+    history("/login");
+    window.location.reload();
+    
 }
 
 
@@ -139,7 +146,6 @@ const closePopup=()=>{
         } catch (error) {
           setShowErrorPopup(true);
           setErrorMessage('System Error');
-          console.error("Error loading categories:", error);
         }
       };
       

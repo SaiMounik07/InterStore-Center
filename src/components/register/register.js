@@ -26,7 +26,8 @@ const closeErrorPopup=()=>{
         setShowErrorPopup(false);
     }
 
-const handleRegister=async()=>{
+const handleRegister=async(e)=>{
+    e.preventDefault();
     if(!(password===confirmPassword))
     {
         setShowErrorPopup(true);

@@ -19,7 +19,8 @@ function Verify(){
     const closeErrorPopup=()=>{
             setShowErrorPopup(false);
         }
-    const submitOTP=async()=>{
+    const submitOTP=async(e)=>{
+        e.preventDefault();
         try{
             isLoad(true);
             const response=await axios.post(AuthService.getBaseUrl()+"/member/verify",{

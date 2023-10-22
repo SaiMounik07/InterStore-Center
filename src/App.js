@@ -51,7 +51,7 @@ function App() {
           />
 
           <Route path="/category"
-                    element={isAuthenticated ? <Category /> : <Navigate path="/login" element={<Login />} />}
+                    element={isAuthenticated ? <Category /> : <Navigate to="/login"  />}
                   /> 
           <Route path="/product"  
                     element={isAuthenticated ? <Prouduct /> : <Navigate to="/login" />}

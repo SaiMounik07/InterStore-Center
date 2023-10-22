@@ -4,6 +4,8 @@ import axios, { all } from "axios";
 import { Button } from "antd";
 import "./productDetail.css";
 import { useNavigate } from "react-router-dom";
+import LoaderIcon from "react-loader-icon";
+
 import ErrorPopup from "../popups/errorPopup";
 function AddProduct({onClose}){
     const [productId,setProductId]=useState();
@@ -18,6 +20,7 @@ function AddProduct({onClose}){
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [showErrorPopup,setShowErrorPopup]=useState(false);
     const [message,setMessage]=useState(false);
+    const[load,setLoad]=useState(false);
 
     const history = useNavigate();
 
@@ -47,8 +50,10 @@ function AddProduct({onClose}){
         }
         };
     
-      const handleAddProduct=async()=>{
+      const handleAddProduct=async(e)=>{
+        e.preventDefault();
         try{
+            setLoad(true);
             const response=await axios.post(AuthService.getBaseUrl()+"/product/products",{
         
                 productId:productId,
@@ -63,9 +68,10 @@ function AddProduct({onClose}){
             },{
               headers:AuthService.getToken(),
             });
-            console.log(response);
+            
             
             if(response.data){
+                setLoad(false);
                 history("/product");
                 setTimeout(() => {
                     setMessage(false);
@@ -80,9 +86,11 @@ function AddProduct({onClose}){
       }
         const categoryResponse=async()=>{
             try {
+              setLoad(true);
                 const response = await axios.get(AuthService.getBaseUrl()+"/product/getCategories", {
                   headers: AuthService.getToken(),
                 });
+                setLoad(false);
                 setAllCategories(response.data.value.map((category) => category.categoryName));
             } catch (error) {
                 console.log(error);
@@ -162,7 +170,9 @@ return(
           {category}
         </label>
       ))}
-      
+      {
+            load&&(<LoaderIcon color={"red"} />)
+        }
       <br/>productImage:<input type="file"
                     
                       onChange={handleImageChange}

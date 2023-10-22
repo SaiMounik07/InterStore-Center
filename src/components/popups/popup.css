@@ -9,13 +9,11 @@
     align-items:stretch;
     justify-content:end;
     z-index: 9999;
-    /* width: 50%; */
     transition: opacity 0.3s ease, visibility 0.3s ease;
 
   }
   
   .modal-content {
-    /* width: 100%; */
     background-color: #fff;
     padding: 20px;
     border-radius: 4px;

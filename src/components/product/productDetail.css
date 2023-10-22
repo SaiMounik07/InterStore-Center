@@ -1,6 +1,6 @@
 
 .popup {
-    position: fixed;
+    position:fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -40,10 +40,10 @@
   margin-bottom: 10px;
 }
 label{
-  line-height: 1.5;
+  /* line-height: 1.5; */
 }
 label input[type="radio"] {
-  margin-right: 5px; /* Add space to the right of the radio button */
+  /* margin-right: 5px; */
 
 }
 .submitBt {

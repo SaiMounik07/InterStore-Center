@@ -9,7 +9,7 @@ import { useAsyncError, useNavigate } from "react-router-dom";
 import ProductDetail from './productDetails';
 import AddProduct from './addProduct';
 import DeletePopUp from '../popups/deletePopUP';
-
+import LoaderIcon from "react-loader-icon";
 
 let name = '';
 let id='';
@@ -26,6 +26,7 @@ function Product(){
     const [rowValue,setRowValue]=useState(false)
     const [showAdd,setShowAdd]=useState();
     const [deletePopUP,setDeletePopup]=useState(false);
+    const[load,isLoad]=useState(false);
 
     useEffect(() => {
         products()
@@ -42,28 +43,30 @@ function Product(){
     }
     const handleDelete=async()=>{
         try{
+            isLoad(true)
             const result=await axios.delete(AuthService.getBaseUrl()+"/product/"+id,{
               headers:AuthService.getToken(),
             });
-            if(result.data)
+            if(result.data){
+                isLoad(false)
                 window.location.reload();
+            }
           }catch{
               setShowErrorPopup(true);
               setErrorMessage('unable to delete');
       
           }
     }
-    const addProduct=()=>{
-
-    }
     const products = async () => {
         try {
+            isLoad(true);
           const response = await axios.get(AuthService.getBaseUrl()+"/product/getProducts", {
             headers: AuthService.getToken(),
           });
       
           if (response.status === 200 && response.data.value !== "EMPTY_VALUE") {
             setProductDetails(response.data.value);
+            isLoad(false);
           } else {
             setShowErrorPopup(true);
             setErrorMessage('no products, please add category');
@@ -172,6 +175,9 @@ function Product(){
             <ProductDetail product={rowValue} onclose={closeDetails}/>
         )
        }
+       {
+            load&&(<LoaderIcon color={"red"} />)
+        }
        {
             showErrorPopup &&(
                  <ErrorPopup isVisible={showErrorPopups} onClose={closeErrorPopup} name={errorMessage}/>
