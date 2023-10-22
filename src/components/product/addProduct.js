@@ -97,7 +97,7 @@ return(
     <div className="popup">
         <form className="popup-inner" onSubmit={handleAddProduct}>
         <h3 className='header'>Add Product</h3><br></br>
-            <div className="conataoiner">
+            <div className="container">
             ProductId:<input type='text'
             placeholder="ProductId"
             onChange={(e) => setProductId(e.target.value)}

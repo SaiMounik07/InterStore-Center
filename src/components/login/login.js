@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye';
-import {  useNavigate } from "react-router-dom";
+import {  useNavigate,Link,Route } from "react-router-dom";
 import Home from "../home/home";
 import "./login.css";
 import AuthService from "../../auth/auth-service";
@@ -11,6 +11,7 @@ import ErrorPopup from "../popups/errorPopup";
 
 
 import axios from "axios";
+import Register from "../register/register";
 
 function Login(){
     const [password, setPassword] = useState("");
@@ -68,7 +69,10 @@ function Login(){
     const LoginAuth={
         Authenticated
     }
-     
+     const navigateToRegister=()=>{
+        navigate("/register",{replace: true});
+
+     }
 return(
     <div className="main">
     <div className="login-page">
@@ -99,7 +103,7 @@ return(
                   <Icon onClick={handleToggle} className="eye-icon" icon={icon} size={20}/>
                 <input className="submitBtn" type="submit" 
                 value="login"/>
-                <p class="message">Not registered? <a href="#">Create an account</a></p>
+                <p className="message">Not registered? <a onClick={navigateToRegister} >Create an account</a></p>
                 </form>
                 
         </div>

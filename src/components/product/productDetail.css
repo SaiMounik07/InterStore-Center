@@ -25,6 +25,27 @@
 .short-input{
   width: 10px;
 }
+.popup-inner input[type="password"]{
+  width: 350px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3); 
+  margin-bottom: 10px;
+}
+.popup-inner input[type="email"]{
+  width: 350px;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.3); 
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+label{
+  line-height: 1.5;
+}
+label input[type="radio"] {
+  margin-right: 5px; /* Add space to the right of the radio button */
+
+}
 .submitBt {
     background-color: red; 
     height: 33px;
@@ -35,9 +56,19 @@
     border-radius: 4px; 
   }
   
-  /* Style on hover (optional) */
   .submitBt:hover {
-    background-color: darkred; /* Change color on hover */
+    background-color: darkred;
   }
-  
+  .submitB{
+      background-color: rgb(0, 136, 255); 
+      height: 33px;
+      color: white; 
+      border: none; 
+      padding: 5px 20px; 
+      cursor: pointer; 
+      border-radius: 5px; 
     
+  }
+  .resend-otp{
+    line-height: 3;
+  }

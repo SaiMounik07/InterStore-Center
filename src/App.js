@@ -5,15 +5,18 @@ import Category from './components/product/category';
 import Home from './components/home/home';
 import { BrowserRouter,HashRouter, Routes, Route, redirect,Link, Navigate } from "react-router-dom";
 import NoPage from './pages/nopage';
-import Login from './components/login/login'; // Correct import for Login component
+import Login from './components/login/login';
 import AuthService from './auth/auth-service';
 import { useState, useEffect } from "react";
 import Logout from './components/logout/logout';
 import Order from './components/order/order';
+import Register from './components/register/register';
 import { useNavigate } from 'react-router-dom';
+import Verify from './components/register/verify';
 function App() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [showPopup, setShowPopup] = useState(true);
+  const[isRegistered,setIsRegistered]=useState(false);
   // const navigate=useNavigate();
 
   const handleLogout = () => {
@@ -32,7 +35,10 @@ function App() {
       setCurrentUser(user);
     }
   }, []);
+
   const isAuthenticated = !!currentUser;
+
+
 
   return (
     <div className="App">
@@ -43,8 +49,9 @@ function App() {
                   <Route path="/home"
           element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
           />
+
           <Route path="/category"
-                    element={isAuthenticated ? <Category /> : <Route path="/login" element={<Login />} />}
+                    element={isAuthenticated ? <Category /> : <Navigate path="/login" element={<Login />} />}
                   /> 
           <Route path="/product"  
                     element={isAuthenticated ? <Prouduct /> : <Navigate to="/login" />}
@@ -60,6 +67,8 @@ function App() {
           ) : (
             <Route path="/" element={<Navigate to="/login" />} />
           )}
+          {isAuthenticated? null:<Route path="/verify" element={<Verify/>}/> }
+          {isAuthenticated ? null : <Route path="/register" element={<Register />}/> }                               
           {isAuthenticated ? null : <Route path="/login"  element={<Login />} />}
         </Routes>
       </HashRouter>

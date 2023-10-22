@@ -2,3 +2,18 @@
   margin: 0;
   font-family: "Roboto", sans-serif;
 }
+.verify_section{
+  text-align: center;
+  margin-top: 2;
+  padding: 10px;
+}
+.otp{
+  width: 200px;
+  padding-left: 80px;
+}
+.otp-class{
+  padding-top: 50%;
+}
+.otp-input{
+  text-align: center;
+}
