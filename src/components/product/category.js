@@ -65,10 +65,6 @@ setShowErrorPopup(true);
 }
 const closeErrorPopup=()=>{
     setShowErrorPopup(false);
-    localStorage.clear();
-    history("/login");
-    window.location.reload();
-    
 }
 
 

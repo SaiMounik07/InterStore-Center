@@ -40,10 +40,10 @@
   margin-bottom: 10px;
 }
 label{
-  /* line-height: 1.5; */
+  line-height: 1.5;
 }
 label input[type="radio"] {
-  /* margin-right: 5px; */
+  margin-right: 5px;
 
 }
 .submitBt {
